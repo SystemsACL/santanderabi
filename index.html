@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datos de transferencia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --rojo: #EC0000;
+      --rojo-logo: #DB3027;
+      --blanco: #F8FAFC;
+      --celeste: #BDE3EE;
+      --lila: #D8CDEA;
+      --rosa: #EBD7E8;
+      --menta: #D6EEDD;
+      --pixel-azul: #A9D9E8;
+      --pixel-lila: #CFC2E3;
+      --texto: #1F2430;
+      --gris: #6B7280;
+      --gradiente: linear-gradient(160deg, var(--blanco) 0%, var(--celeste) 35%, var(--rosa) 65%, var(--lila) 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gradiente);
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: var(--texto);
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 24px 64px rgba(120, 100, 160, 0.25);
+    }
+
+    .card-header {
+      background: var(--rojo);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .header-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+    }
+    .mini-card { width: 62px; height: auto; display: block; }
+    .header-sub   { color: rgba(255,255,255,0.8); font-size: 12px; margin-bottom: 2px; }
+    .header-title { color: #fff; font-size: 16px; font-weight: 600; }
+
+    .card-body { padding: 0 24px; }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--lila);
+    }
+    .row:last-child { border-bottom: none; }
+
+    .row-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gris);
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .ic {
+      width: 1em; height: 1em;
+      fill: none; stroke: currentColor;
+      stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+    .chip {
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--celeste), var(--lila));
+      color: var(--rojo);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+
+    .row-value {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--texto);
+      text-align: right;
+    }
+    .mono { font-family: 'Courier New', monospace; }
+
+    .copy-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #b4a9cc;
+      padding: 6px;
+      font-size: 18px;
+      line-height: 0;
+      transition: color .15s;
+    }
+    .copy-btn:hover { color: var(--rojo); }
+    .copy-btn:focus-visible { outline: 2px solid var(--rojo); outline-offset: 2px; border-radius: 4px; }
+    .copy-btn.copied { color: #2E9E6B; }
+
+    .card-footer {
+      background: linear-gradient(90deg, var(--celeste), var(--rosa), var(--lila));
+      padding: 12px 24px;
+      font-size: 12px;
+      color: #4b4560;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card-footer .ic { color: var(--rojo); font-size: 16px; }
+
+    .promo {
+      margin-top: 24px;
+      text-align: center;
+      color: rgba(31,36,48,0.6);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .promo a { color: var(--rojo); text-decoration: none; font-weight: 500; }
+    .promo .small { color: rgba(31,36,48,0.45); }
+    .promo .small a { color: rgba(31,36,48,0.65); }
+  </style>
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-credit-card" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20M6 15h4"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></symbol>
+      <symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 21h18M5 18v-7M9.5 18v-7M14.5 18v-7M19 18v-7M12 3 3 8h18z"/></symbol>
+      <symbol id="i-hash" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></symbol>
+      <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V5a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h14a1 1 0 0 1 1 1v3M3 6v12a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-3"/><path d="M16 14a1 1 0 0 0 0 2h5v-2z"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="3"/><path d="M11 18h2"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect width="13" height="13" x="9" y="9" rx="2.5"/><path d="M5 15a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6z"/><path d="m9 12 2.2 2.2L15 10.5"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="card">
+
+    <div class="card-header">
+      <div class="header-icon"><svg class="mini-card" viewBox="0 0 64 42" aria-hidden="true">
+        <defs>
+          <linearGradient id="gcard" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#F8FAFC"/>
+            <stop offset=".3" stop-color="#BDE3EE"/>
+            <stop offset=".6" stop-color="#EBD7E8"/>
+            <stop offset=".85" stop-color="#D8CDEA"/>
+            <stop offset="1" stop-color="#D6EEDD"/>
+          </linearGradient>
+          <linearGradient id="gchip" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#E8EAEE"/>
+            <stop offset="1" stop-color="#9AA0AA"/>
+          </linearGradient>
+        </defs>
+        <rect x="1" y="1" width="62" height="40" rx="6" fill="url(#gcard)" stroke="#fff" stroke-opacity=".7"/>
+        <rect x="8" y="9" width="12" height="9" rx="2" fill="url(#gchip)"/>
+        <path d="M8 13.5h12M14 9v9" stroke="#fff" stroke-opacity=".6" stroke-width=".8"/>
+        <ellipse cx="45" cy="14" rx="6" ry="4.2" fill="#DB3027"/>
+        <g fill="#A9D9E8"><rect x="6" y="32" width="3" height="3"/><rect x="11" y="29" width="3" height="3"/><rect x="16" y="33" width="3" height="3"/></g>
+        <g fill="#CFC2E3"><rect x="9" y="35" width="3" height="3"/><rect x="14" y="31" width="3" height="3"/><rect x="21" y="34" width="3" height="3"/></g>
+        <circle cx="46" cy="31" r="5.5" fill="#D4352F"/>
+        <circle cx="53" cy="31" r="5.5" fill="#EBA23A" fill-opacity=".92"/>
+      </svg></div>
+      <div>
+        <p class="header-sub">Datos para transferencia</p>
+        <p class="header-title">Santander Like You Débito</p>
+      </div>
+    </div>
+
+    <div class="card-body">
+
+      <div class="row">
+        <div class="row-label">
+          <div class="chip"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-user"/></svg></div>Titular
+        </div>
+        <div class="row-value">
+          <!-- ESCRIBE AQUÍ TU NOMBRE COMPLETO -->
+          <span id="titular">ABIGAIL CANCHE LOPEZ</span>
+          <button class="copy-btn" onclick="copy('titular')" title="Copiar" aria-label="Copiar">
+            <svg class="ic" viewBox="0 0 24 24" id="icon-titular" aria-hidden="true"><use href="#i-copy"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">
+          <div class="chip"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bank"/></svg></div>Banco
+        </div>
+        <div class="row-value">
+          Santander México
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">
+          <div class="chip"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-hash"/></svg></div>CLABE
+        </div>
+        <div class="row-value">
+          <!-- ESCRIBE AQUÍ TU CLABE INTERBANCARIA (18 dígitos) -->
+          <span class="mono" id="clabe">014 692 140514782987</span>
+          <button class="copy-btn" onclick="copy('clabe')" title="Copiar" aria-label="Copiar">
+            <svg class="ic" viewBox="0 0 24 24" id="icon-clabe" aria-hidden="true"><use href="#i-copy"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">
+          <div class="chip"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wallet"/></svg></div>Cuenta
+        </div>
+        <div class="row-value">
+          <span class="mono" id="cuenta">14051478298</span>
+          <button class="copy-btn" onclick="copy('cuenta')" title="Copiar" aria-label="Copiar">
+            <svg class="ic" viewBox="0 0 24 24" id="icon-cuenta" aria-hidden="true"><use href="#i-copy"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">
+          <div class="chip"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-credit-card"/></svg></div>Tarjeta
+        </div>
+        <div class="row-value">
+          <!-- ESCRIBE AQUÍ TU NÚMERO DE TARJETA (o solo los últimos 4 dígitos) -->
+          <span class="mono" id="numero">5579 0870 2445 1590</span>
+          <button class="copy-btn" onclick="copy('numero')" title="Copiar" aria-label="Copiar">
+            <svg class="ic" viewBox="0 0 24 24" id="icon-numero" aria-hidden="true"><use href="#i-copy"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-label">
+          <div class="chip"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg></div>Teléfono
+        </div>
+        <div class="row-value">
+          <!-- ESCRIBE AQUÍ TU NÚMERO DE TELÉFONO -->
+          <span id="telefono">987 103 9604</span>
+          <button class="copy-btn" onclick="copy('telefono')" title="Copiar" aria-label="Copiar">
+            <svg class="ic" viewBox="0 0 24 24" id="icon-telefono" aria-hidden="true"><use href="#i-copy"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card-footer">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shield"/></svg>
+      Toca el icono para copiar cada dato
+    </div>
+
+  </div>
+
+  <div class="promo">
+    ¿Te gustó esta plantilla? Llama al <a href="tel:9871039604">9871039604</a> por solo $50 MXN.<br/>
+    <span class="small">Tecreamos una a tu medida ,24/7 visible en la web — Creado por <a href="https://aclsys.net" target="_blank">aclsys.net</a></span>
+  </div>
+
+  <script>
+    function copy(id) {
+      const text = document.getElementById(id).textContent.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        const icon = document.getElementById('icon-' + id);
+        const btn = icon.closest('button');
+        icon.firstElementChild.setAttribute('href','#i-check');
+        btn.classList.add('copied');
+        setTimeout(() => {
+          icon.firstElementChild.setAttribute('href','#i-copy');
+          btn.classList.remove('copied');
+        }, 1800);
+      });
+    }
+  </script>
+
+</body>
+</html>
