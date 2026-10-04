@@ -135,15 +135,49 @@
     .card-footer .ic { color: var(--rojo); font-size: 16px; }
 
     .promo {
-      margin-top: 14px;
-      text-align: center;
-      color: rgba(31,36,48,0.6);
-      font-size: 11px;
-      line-height: 1.7;
+      width: 100%;
+      max-width: 360px;
+      margin-top: 12px;
+      padding: 16px 18px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.9);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(120,100,160,0.18);
+      color: var(--texto);
     }
-    .promo a { color: var(--rojo); text-decoration: none; font-weight: 500; }
-    .promo .small { color: rgba(31,36,48,0.45); }
-    .promo .small a { color: rgba(31,36,48,0.65); }
+    .promo-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--rojo); }
+    .promo-title { font-size: 16px; font-weight: 600; line-height: 1.25; margin-top: 4px; }
+    .promo-text { font-size: 12px; line-height: 1.5; color: var(--gris); margin-top: 4px; }
+    .promo-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
+    .promo-price { flex-shrink: 0; line-height: 1; color: var(--gris); font-size: 11px; }
+    .promo-price strong { display: block; color: var(--texto); font-size: 24px; font-weight: 600; letter-spacing: -.02em; margin-top: 3px; }
+    .promo-price strong span { font-size: 11px; font-weight: 500; color: var(--gris); letter-spacing: 0; margin-left: 2px; }
+    .cta {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      border-radius: 999px;
+      background: var(--rojo);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 5px 14px rgba(236,0,0,0.25);
+      touch-action: manipulation;
+      transition: transform .12s;
+    }
+    .cta .ic { color: #fff; font-size: 19px; }
+    .cta:active { transform: scale(.98); }
+    .cta:focus-visible { outline: 2px solid var(--rojo); outline-offset: 2px; }
+    .promo-sign { margin-top: 10px; text-align: center; font-size: 10px; color: var(--gris); }
+    .promo-sign a { color: var(--texto); text-decoration: none; font-weight: 500; }
     @media (max-width: 400px) {
       body { padding: 12px; }
       .row-label { gap: 8px; font-size: 12px; }
@@ -164,6 +198,7 @@
       <symbol id="i-phone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="3"/><path d="M11 18h2"/></symbol>
       <symbol id="i-copy" viewBox="0 0 24 24"><rect width="13" height="13" x="9" y="9" rx="2.5"/><path d="M5 15a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2"/></symbol>
       <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.3A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-1.8-1-.8.6a3.6 3.6 0 0 1-1.6-1.6l.6-.8-1-1.8z"/></symbol>
       <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6z"/><path d="m9 12 2.2 2.2L15 10.5"/></symbol>
     </defs>
   </svg>
@@ -284,10 +319,18 @@
 
   </div>
 
-  <div class="promo">
-    ¿Te gustó esta plantilla? Llama al <a href="tel:9871039604">9871039604</a> por solo $50 MXN.<br/>
-    <span class="small">Tecreamos una a tu medida ,24/7 visible en la web — Creado por <a href="https://aclsys.net" target="_blank">aclsys.net</a></span>
-  </div>
+  <aside class="promo">
+    <p class="promo-eyebrow">Plantillas de transferencia</p>
+    <p class="promo-title">¿Quieres una igual, con tus datos?</p>
+    <p class="promo-text">Tu banco, tus colores y un link para compartir. Tus clientes copian tus datos con un toque, 24/7.</p>
+    <div class="promo-row">
+      <p class="promo-price">Solo<strong>$50<span>MXN</span></strong></p>
+      <a class="cta" href="https://wa.me/529871039604?text=Hola%2C%20quiero%20mi%20plantilla%20de%20transferencia" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp" title="WhatsApp">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chat"/></svg>
+      </a>
+    </div>
+    <p class="promo-sign">Diseñado por <a href="https://aclsys.net" target="_blank" rel="noopener">aclsys.net</a></p>
+  </aside>
 
   <script>
     function copy(id) {
